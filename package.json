@@ -2,11 +2,11 @@
   "name": "tomlkit",
   "displayName": "tomlkit",
   "description": "High-performance TOML validation powered by Rust & WASM",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "nachinsec",
-  "icon": "icon.png",
+  "icon": "icon.jpg",
   "engines": {
-    "vscode": "^1.108.1"
+    "vscode": "^1.100.0"
   },
   "categories": [
     "Linters",
@@ -52,7 +52,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.108.1",
+    "@types/vscode": "^1.100.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
     "typescript-eslint": "^8.52.0",
