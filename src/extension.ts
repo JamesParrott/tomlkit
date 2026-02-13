@@ -32,6 +32,8 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	const wasmPath = path.join(context.extensionPath, 'dist', 'wasm', 'tomlkit_core_bg.wasm');
 	const jsPath = path.join(context.extensionPath, 'dist', 'wasm', 'tomlkit_core.js');
+    const wasmUrl = new URL(`file:///${wasmPath.replace(/\\/g, '/')}`).href;
+    const jsUrl = new URL(`file:///${jsPath.replace(/\\/g, '/')}`).href;
 
 	async function updateDiagnostics(document: vscode.TextDocument) {
 		const isToml = document.languageId === 'toml' || document.fileName.endsWith('.toml');
@@ -107,11 +109,11 @@ export async function activate(context: vscode.ExtensionContext) {
 		diagnosticCollection.set(document.uri, diagnostics);
 	}
 
-	if (fs.existsSync(wasmPath) && fs.existsSync(jsPath)) {
+	if (fs.existsSync(wasmUrl) && fs.existsSync(jsUrl)) {
 		try {
-			const wasmModule = await import(jsPath);
+			const wasmModule = await import(jsUrl);
 
-			const wasmBinary = fs.readFileSync(wasmPath);
+			const wasmBinary = fs.readFileSync(wasmUrl);
 			await wasmModule.default(wasmBinary);
 
 			validateToml = wasmModule.validate_toml;
@@ -125,7 +127,7 @@ export async function activate(context: vscode.ExtensionContext) {
 			console.error('Failed to load WASM:', error);
 		}
 	} else {
-		console.error('WASM files not found at paths:', { wasmPath, jsPath });
+		console.error('WASM files not found at local Urls (paths):', { wasmUrl, jsUrl });
 	}
 
 	const disposable = vscode.commands.registerCommand('tomlkit.helloWorld', () => {
