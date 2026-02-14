@@ -7,5 +7,4 @@ REPO_ROOT_DIR=$(realpath $(dirname $0))
 cd tomlkit-core
 wasm-pack build --target web
 cd $REPO_ROOT_DIR
-pnpm run compile
 npx -y @vscode/vsce package
