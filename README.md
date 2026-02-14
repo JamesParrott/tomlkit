@@ -27,3 +27,16 @@
 ## License
 
 MIT © [nachinsec](https://github.com/nachinsec)
+
+## Development
+
+### Dev environment setup
+
+#### Mac / Linux
+
+#### Windows
+ - Install [Rust](https://rust-lang.org/tools/install/) & [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html).  It's probably easiest to install Rustup and the minimum viable Visual Studio C++ Build tools, but it should be possible to use MSYS2 and the windows-gnu toolchain instead.
+ - Install [wasm-pack](https://drager.github.io/wasm-pack/installer/), e.g. `cargo install wasm-pack`.
+ - Install [pnpm](https://pnpm.io/installation)
+ - Install dependencies: run `pnpm install` in your clone of the project repo's root dir.
+ - Build the extension (in Git Bash or some other Bash for Windows): `./build_and_package.sh`.
