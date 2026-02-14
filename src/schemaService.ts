@@ -64,7 +64,7 @@ export class SchemaService {
     }
 
     private async ensureCatalog(): Promise<void> {
-        if (this.catalog) return;
+        if (this.catalog) { return; }
         try {
             this.catalog = await this.fetchJson(this.catalogUrl);
             console.log('SchemaStore catalog fetched successfully');
